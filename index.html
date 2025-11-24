@@ -1,0 +1,640 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movix - Modern Openbaar Vervoer West-Brabant</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700&display=swap');
+        
+        :root {
+          --movix-primary: #3F51B5;
+          --movix-primary-light: #5C6BC0;
+          --movix-primary-dark: #303F9F;
+          --movix-accent: #FF6E40;
+          --movix-accent-dark: #F4511E;
+          --movix-white: #FFFFFF;
+          --movix-light-gray: #F5F5F5;
+          --movix-gray: #E0E0E0;
+          --movix-dark-gray: #424242;
+          --movix-black: #212121;
+          --movix-shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.1);
+          --movix-shadow-md: 0 4px 16px rgba(0, 0, 0, 0.12);
+          --movix-shadow-lg: 0 8px 24px rgba(63, 81, 181, 0.3);
+          --movix-radius-md: 8px;
+          --movix-radius-lg: 12px;
+          --movix-radius-xl: 16px;
+          --movix-space-sm: 8px;
+          --movix-space-md: 16px;
+          --movix-space-lg: 24px;
+          --movix-space-xl: 32px;
+          --movix-space-2xl: 48px;
+          --movix-space-3xl: 64px;
+          --movix-font-family: 'Quicksand', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+          --movix-transition-base: 250ms ease-in-out;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--movix-font-family);
+            background-color: var(--movix-light-gray);
+            color: var(--movix-dark-gray);
+            line-height: 1.6;
+        }
+
+        /* Navigation */
+        nav {
+            background-color: var(--movix-white);
+            padding: var(--movix-space-lg);
+            box-shadow: var(--movix-shadow-sm);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        nav .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            color: var(--movix-primary);
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: var(--movix-space-xl);
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--movix-dark-gray);
+            font-weight: 500;
+            transition: color var(--movix-transition-base);
+        }
+
+        nav a:hover {
+            color: var(--movix-primary);
+        }
+
+        /* Hero */
+        .hero {
+            background: linear-gradient(135deg, #3F51B5 0%, #5C6BC0 100%);
+            color: var(--movix-white);
+            padding: var(--movix-space-3xl) var(--movix-space-lg);
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 56px;
+            margin-bottom: var(--movix-space-md);
+            letter-spacing: 2px;
+        }
+
+        .hero p {
+            font-size: 22px;
+            margin-bottom: var(--movix-space-xl);
+            opacity: 0.95;
+        }
+
+        .hero .region {
+            font-size: 18px;
+            background: rgba(255,255,255,0.2);
+            display: inline-block;
+            padding: 8px 20px;
+            border-radius: 50px;
+            margin-bottom: var(--movix-space-xl);
+        }
+
+        .btn {
+            font-family: var(--movix-font-family);
+            font-size: 16px;
+            font-weight: 600;
+            padding: 16px 32px;
+            border-radius: var(--movix-radius-md);
+            border: none;
+            cursor: pointer;
+            transition: all var(--movix-transition-base);
+            display: inline-block;
+            text-decoration: none;
+        }
+
+        .btn-accent {
+            background-color: var(--movix-accent);
+            color: var(--movix-white);
+            box-shadow: var(--movix-shadow-sm);
+        }
+
+        .btn-accent:hover {
+            background-color: var(--movix-accent-dark);
+            transform: translateY(-2px);
+            box-shadow: var(--movix-shadow-md);
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            color: var(--movix-white);
+            border: 2px solid var(--movix-white);
+            margin-left: 16px;
+        }
+
+        .btn-outline:hover {
+            background-color: var(--movix-white);
+            color: var(--movix-primary);
+        }
+
+        /* Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 var(--movix-space-lg);
+        }
+
+        section {
+            padding: var(--movix-space-3xl) 0;
+        }
+
+        h2 {
+            font-size: 40px;
+            color: var(--movix-primary);
+            margin-bottom: var(--movix-space-lg);
+            text-align: center;
+        }
+
+        /* Stats */
+        .stats {
+            background: var(--movix-white);
+            padding: var(--movix-space-2xl);
+            border-radius: var(--movix-radius-lg);
+            box-shadow: var(--movix-shadow-md);
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: var(--movix-space-xl);
+            text-align: center;
+            margin-bottom: var(--movix-space-2xl);
+        }
+
+        .stat-number {
+            font-size: 48px;
+            font-weight: 700;
+            color: var(--movix-primary);
+            margin-bottom: 8px;
+        }
+
+        .stat-label {
+            color: var(--movix-dark-gray);
+            font-size: 16px;
+        }
+
+        /* Line Categories */
+        .line-categories {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: var(--movix-space-lg);
+            margin-bottom: var(--movix-space-2xl);
+        }
+
+        .category-card {
+            background: var(--movix-white);
+            border-radius: var(--movix-radius-lg);
+            padding: var(--movix-space-xl);
+            box-shadow: var(--movix-shadow-sm);
+            transition: all var(--movix-transition-base);
+            cursor: pointer;
+        }
+
+        .category-card:hover {
+            box-shadow: var(--movix-shadow-md);
+            transform: translateY(-4px);
+        }
+
+        .category-icon {
+            font-size: 48px;
+            margin-bottom: var(--movix-space-md);
+        }
+
+        .category-card h3 {
+            color: var(--movix-primary);
+            font-size: 24px;
+            margin-bottom: var(--movix-space-sm);
+        }
+
+        .category-card p {
+            color: var(--movix-dark-gray);
+            margin-bottom: var(--movix-space-md);
+        }
+
+        .line-count {
+            display: inline-block;
+            background: var(--movix-primary-light);
+            color: var(--movix-white);
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        /* Features */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: var(--movix-space-lg);
+            margin-top: var(--movix-space-xl);
+        }
+
+        .feature-card {
+            background: var(--movix-white);
+            border-radius: var(--movix-radius-lg);
+            padding: var(--movix-space-xl);
+            text-align: center;
+            box-shadow: var(--movix-shadow-sm);
+        }
+
+        .feature-icon {
+            font-size: 56px;
+            margin-bottom: var(--movix-space-md);
+        }
+
+        .feature-card h3 {
+            color: var(--movix-primary);
+            font-size: 20px;
+            margin-bottom: var(--movix-space-sm);
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--movix-primary-dark);
+            color: var(--movix-white);
+            padding: var(--movix-space-2xl) 0;
+            margin-top: var(--movix-space-3xl);
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: var(--movix-space-xl);
+            margin-bottom: var(--movix-space-xl);
+        }
+
+        footer h4 {
+            margin-bottom: var(--movix-space-md);
+            font-size: 18px;
+        }
+
+        footer ul {
+            list-style: none;
+        }
+
+        footer li {
+            margin-bottom: var(--movix-space-sm);
+        }
+
+        footer a {
+            color: var(--movix-white);
+            text-decoration: none;
+            opacity: 0.8;
+            transition: opacity var(--movix-transition-base);
+        }
+
+        footer a:hover {
+            opacity: 1;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: var(--movix-space-xl);
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+            opacity: 0.7;
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 36px; }
+            h2 { font-size: 28px; }
+            nav ul { display: none; }
+            .stats { grid-template-columns: 1fr 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="container">
+            <div class="logo">Movix</div>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="lijnen.html">Lijnennetwerk</a></li>
+                <li><a href="innovatie.html">Innovatie</a></li>
+                <li><a href="over.html">Over Ons</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <section class="hero">
+        <div class="container">
+            <div class="region">🚍 Een concept voor West-Brabant</div>
+            <h1>Welkom bij Movix</h1>
+            <p>De toekomst van openbaar vervoer komt eraan! Oftewel, busje komt zo</p>
+            <p style="font-size: 16px; margin-top: 16px; opacity: 0.9;">
+                💡 Movix is momenteel in ontwikkeling. Ontdek ons concept voor modern, duurzaam vervoer door West-Brabant.
+            </p>
+            <a href="lijnen.html" class="btn btn-accent">Ontdek onze lijnen</a>
+            <a href="contact.html" class="btn btn-outline">Interesse?</a>
+        </div>
+    </section>
+
+    <!-- Status Banner -->
+    <section style="background: linear-gradient(135deg, #FF6E40 0%, #FF9E80 100%); padding: 24px 0;">
+        <div class="container">
+            <div style="text-align: center; color: white;">
+                <h3 style="font-size: 24px; margin-bottom: 8px; font-weight: 600;">🚧 In ontwikkeling</h3>
+                <p style="font-size: 16px; opacity: 0.95;">
+                    Movix is momenteel een ambitieus concept voor moderne mobiliteit in West-Brabant. 
+                    We werken hard om dit werkelijkheid te maken!
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats -->
+    <section>
+        <div class="container">
+            <h2 style="margin-bottom: 16px;">Ons Concept in Cijfers</h2>
+            <p style="text-align: center; color: var(--movix-dark-gray); font-size: 16px; margin-bottom: 32px;">
+                Dit zijn onze ambities voor het Movix-netwerk
+            </p>
+            <div class="stats">
+                <div>
+                    <div class="stat-number">60+</div>
+                    <div class="stat-label">Geplande Buslijnen</div>
+                </div>
+                <div>
+                    <div class="stat-number">250+</div>
+                    <div class="stat-label">Elektrische Bussen (gepland)</div>
+                </div>
+                <div>
+                    <div class="stat-number">X+</div>
+                    <div class="stat-label">Geplande Knooppunten</div>
+                </div>
+                <div>
+                    <div class="stat-number">100%</div>
+                    <div class="stat-label">Elektrisch & Duurzaam</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Quick Overview -->
+    <section style="background: var(--movix-white);">
+        <div class="container">
+            <h2>Waarom Movix?</h2>
+            <p style="text-align: center; color: var(--movix-dark-gray); font-size: 18px; margin-bottom: 48px;">
+                Een nieuw tijdperk van openbaar vervoer in West-Brabant
+            </p>
+
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">🌍</div>
+                    <h3>Heel West-Brabant</h3>
+                    <p>Van Bergen op Zoom tot Tilburg - alle steden en dorpen verbonden met frequente en betrouwbare verbindingen.</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">🔋</div>
+                    <h3>100% Elektrisch</h3>
+                    <p>Onze volledige vloot rijdt elektrisch. Goed voor het milieu en prettig voor de reizigers.</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">📱</div>
+                    <h3>Slimme Technologie</h3>
+                    <p>Real-time tracking, contactloos betalen en flex services. Reizen was nog nooit zo eenvoudig.</p>
+                </div>
+            </div>
+
+            <div style="text-align: center; margin-top: 48px;">
+                <a href="over.html" class="btn btn-accent">Lees meer over wie wij zijn</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Network Overview -->
+    <section>
+        <div class="container">
+            <h2>Ons Lijnennetwerk</h2>
+            <p style="text-align: center; color: var(--movix-dark-gray); font-size: 18px; margin-bottom: 48px;">
+                Diverse lijnen voor elke reisbehoefte
+            </p>
+
+            <div class="line-categories">
+                <div class="category-card" onclick="window.location.href='lijnen.html'">
+                    <div class="category-icon">🏙️</div>
+                    <h3>Stadslijnen</h3>
+                    <p>Binnen steden naar alle wijken</p>
+                    <span class="line-count">Lijnen 1-9</span>
+                </div>
+
+                <div class="category-card" onclick="window.location.href='lijnen.html'">
+                    <div class="category-icon">🌐</div>
+                    <h3>Regiolijnen</h3>
+                    <p>Tussen steden en dorpen</p>
+                    <span class="line-count">Lijnen 101-210</span>
+                </div>
+
+                <div class="category-card" onclick="window.location.href='lijnen.html'">
+                    <div class="category-icon">⚡</div>
+                    <h3>Snellijnen</h3>
+                    <p>Express tijdens spitsuren</p>
+                    <span class="line-count">Lijnen 501-503</span>
+                </div>
+
+                <div class="category-card" onclick="window.location.href='lijnen.html'">
+                    <div class="category-icon">🌙</div>
+                    <h3>Nachtlijnen</h3>
+                    <p>Veilig thuiskomen in het weekend</p>
+                    <span class="line-count">Lijnen N1-N10</span>
+                </div>
+
+                <div class="category-card" onclick="window.location.href='lijnen.html'">
+                    <div class="category-icon">🎉</div>
+                    <h3>Speciale Lijnen</h3>
+                    <p>Strand, evenementen en flex services</p>
+                    <span class="line-count">Lijnen 700-900</span>
+                </div>
+
+                <div class="category-card" onclick="window.location.href='lijnen.html'">
+                    <div class="category-icon">🌍</div>
+                    <h3>Internationale Lijnen</h3>
+                    <p>Grensoverschrijdend naar België</p>
+                    <span class="line-count">Lijnen 701-702</span>
+                </div>
+            </div>
+
+            <div style="text-align: center; margin-top: 32px;">
+                <a href="lijnen.html" class="btn btn-accent">Bekijk alle lijnen</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Innovation Highlight -->
+    <section style="background: linear-gradient(135deg, #3F51B5 0%, #5C6BC0 100%); color: white; padding: 64px 0;">
+        <div class="container">
+            <h2 style="color: white;">Innovatie & Duurzaamheid</h2>
+            <p style="text-align: center; font-size: 18px; margin-bottom: 48px; opacity: 0.95;">
+                Movix bouwt aan de toekomst van openbaar vervoer
+            </p>
+
+            <div class="features-grid">
+                <div class="feature-card" style="background: rgba(255,255,255,0.1); backdrop-filter: blur(10px); color: white;">
+                    <div class="feature-icon">🔋</div>
+                    <h3 style="color: white;">Elektrische Vloot</h3>
+                    <p style="color: rgba(255,255,255,0.9);">250+ moderne elektrische bussen voor een schonere toekomst</p>
+                </div>
+
+                <div class="feature-card" style="background: rgba(255,255,255,0.1); backdrop-filter: blur(10px); color: white;">
+                    <div class="feature-icon">📱</div>
+                    <h3 style="color: white;">Mobiele App</h3>
+                    <p style="color: rgba(255,255,255,0.9);">Real-time tracking en eenvoudig je reis plannen</p>
+                </div>
+
+                <div class="feature-card" style="background: rgba(255,255,255,0.1); backdrop-filter: blur(10px); color: white;">
+                    <div class="feature-icon">♿</div>
+                    <h3 style="color: white;">Voor Iedereen</h3>
+                    <p style="color: rgba(255,255,255,0.9);">Volledig toegankelijk voor alle reizigers</p>
+                </div>
+
+                <div class="feature-card" style="background: rgba(255,255,255,0.1); backdrop-filter: blur(10px); color: white;">
+                    <div class="feature-icon">💳</div>
+                    <h3 style="color: white;">Contactloos Betalen</h3>
+                    <p style="color: rgba(255,255,255,0.9);">Eenvoudig betalen met bankpas of smartphone</p>
+                </div>
+
+                <div class="feature-card" style="background: rgba(255,255,255,0.1); backdrop-filter: blur(10px); color: white;">
+                    <div class="feature-icon">🚴</div>
+                    <h3 style="color: white;">Bike-sharing</h3>
+                    <p style="color: rgba(255,255,255,0.9);">Huur een fiets bij alle stations voor het laatste stuk</p>
+                </div>
+
+                <div class="feature-card" style="background: rgba(255,255,255,0.1); backdrop-filter: blur(10px); color: white;">
+                    <div class="feature-icon">📶</div>
+                    <h3 style="color: white;">Gratis WiFi</h3>
+                    <p style="color: rgba(255,255,255,0.9);">Werk, studeer of ontspan onderweg met gratis internet</p>
+                </div>
+            </div>
+
+            <div style="text-align: center; margin-top: 48px;">
+                <a href="innovatie.html" class="btn btn-outline">Ontdek alle innovaties</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section>
+        <div class="container">
+            <div style="background: white; border-radius: 16px; padding: 64px 32px; text-align: center; box-shadow: var(--movix-shadow-md);">
+                <h2>Geïnteresseerd in Movix?</h2>
+                <p style="font-size: 20px; color: var(--movix-dark-gray); margin-bottom: 32px; max-width: 700px; margin-left: auto; margin-right: auto;">
+                    Meld je aan voor updates over de ontwikkeling van Movix en wees de eerste die hoort wanneer we van start gaan!
+                </p>
+                <div style="max-width: 500px; margin: 0 auto 32px;">
+                    <input type="email" placeholder="Jouw e-mailadres" style="width: 100%; padding: 16px; border: 2px solid var(--movix-gray); border-radius: 8px; font-size: 16px; margin-bottom: 16px; font-family: var(--movix-font-family);">
+                    <button class="btn btn-accent" style="width: 100%;">📬 Houd me op de hoogte</button>
+                </div>
+                <div style="display: flex; gap: 32px; justify-content: center; flex-wrap: wrap; margin-top: 32px; padding-top: 32px; border-top: 1px solid var(--movix-gray);">
+                    <div>
+                        <div style="font-size: 24px; font-weight: 700; color: var(--movix-primary); margin-bottom: 4px;">🚀</div>
+                        <div style="font-size: 14px; color: var(--movix-dark-gray);">Concept in ontwikkeling</div>
+                    </div>
+                    <div>
+                        <div style="font-size: 24px; font-weight: 700; color: var(--movix-primary); margin-bottom: 4px;">💚</div>
+                        <div style="font-size: 14px; color: var(--movix-dark-gray);">100% duurzaam</div>
+                    </div>
+                    <div>
+                        <div style="font-size: 24px; font-weight: 700; color: var(--movix-primary); margin-bottom: 4px;">🌐</div>
+                        <div style="font-size: 14px; color: var(--movix-dark-gray);">Voor heel West-Brabant</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div>
+                    <h4>Movix West-Brabant</h4>
+                    <p style="opacity: 0.8; line-height: 1.6; margin-top: 8px;">
+                        Een ambitieus concept voor modern, duurzaam openbaar vervoer in West-Brabant. Momenteel in ontwikkeling.
+                    </p>
+                    <p style="opacity: 0.7; font-size: 14px; margin-top: 12px;">
+                        🚧 Status: Conceptfase
+                    </p>
+                </div>
+                
+                <div>
+                    <h4>Navigatie</h4>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="lijnen.html">Lijnennetwerk</a></li>
+                        <li><a href="innovatie.html">Innovatie</a></li>
+                        <li><a href="over.html">Over Ons</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4>Informatie</h4>
+                    <ul>
+                        <li><a href="over.html">Onze Missie</a></li>
+                        <li><a href="innovatie.html">Duurzaamheid</a></li>
+                        <li><a href="contact.html">Partnerships</a></li>
+                        <li><a href="contact.html">Pers & Media</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4>Contact</h4>
+                    <ul>
+                        <li><a href="mailto:info@movix-concept.nl">📧 info@movix-concept.nl</a></li>
+                        <li><a href="contact.html">💬 Contactformulier</a></li>
+                        <li><a href="contact.html">📝 Interesse aanmelden</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4>Volg Ons</h4>
+                    <ul>
+                        <li><a href="#">Facebook</a></li>
+                        <li><a href="#">Instagram</a></li>
+                        <li><a href="#">Twitter (X)</a></li>
+                        <li><a href="#">LinkedIn</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2024 Movix West-Brabant. Alle rechten voorbehouden.</p>
+                <p style="margin-top: 8px;">
+                    <a href="#" style="margin: 0 12px;">Privacybeleid</a> | 
+                    <a href="#" style="margin: 0 12px;">Algemene Voorwaarden</a> | 
+                    <a href="#" style="margin: 0 12px;">Cookie Beleid</a>
+                </p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

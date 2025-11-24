@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Over Ons - Movix</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700&display=swap');
+        
+        :root {
+          --movix-primary: #3F51B5;
+          --movix-primary-light: #5C6BC0;
+          --movix-primary-dark: #303F9F;
+          --movix-accent: #FF6E40;
+          --movix-white: #FFFFFF;
+          --movix-light-gray: #F5F5F5;
+          --movix-gray: #E0E0E0;
+          --movix-dark-gray: #424242;
+          --movix-shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.1);
+          --movix-shadow-md: 0 4px 16px rgba(0, 0, 0, 0.12);
+          --movix-radius-lg: 12px;
+          --movix-space-sm: 8px;
+          --movix-space-md: 16px;
+          --movix-space-lg: 24px;
+          --movix-space-xl: 32px;
+          --movix-space-2xl: 48px;
+          --movix-space-3xl: 64px;
+          --movix-font-family: 'Quicksand', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+          --movix-transition-base: 250ms ease-in-out;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--movix-font-family);
+            background-color: var(--movix-light-gray);
+            color: var(--movix-dark-gray);
+            line-height: 1.6;
+        }
+
+        nav {
+            background-color: var(--movix-white);
+            padding: var(--movix-space-lg);
+            box-shadow: var(--movix-shadow-sm);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        nav .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            color: var(--movix-primary);
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: var(--movix-space-xl);
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--movix-dark-gray);
+            font-weight: 500;
+            transition: color var(--movix-transition-base);
+        }
+
+        nav a:hover {
+            color: var(--movix-primary);
+        }
+
+        .hero {
+            background: linear-gradient(135deg, #3F51B5 0%, #5C6BC0 100%);
+            color: var(--movix-white);
+            padding: var(--movix-space-3xl) var(--movix-space-lg);
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 48px;
+            margin-bottom: var(--movix-space-md);
+        }
+
+        .hero p {
+            font-size: 20px;
+            opacity: 0.95;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 var(--movix-space-lg);
+        }
+
+        section {
+            padding: var(--movix-space-3xl) 0;
+        }
+
+        h2 {
+            font-size: 40px;
+            color: var(--movix-primary);
+            margin-bottom: var(--movix-space-lg);
+            text-align: center;
+        }
+
+        .content-box {
+            background: var(--movix-white);
+            border-radius: var(--movix-radius-lg);
+            padding: var(--movix-space-2xl);
+            margin-bottom: var(--movix-space-xl);
+            box-shadow: var(--movix-shadow-sm);
+        }
+
+        .content-box h3 {
+            color: var(--movix-primary);
+            font-size: 28px;
+            margin-bottom: var(--movix-space-md);
+        }
+
+        .content-box p {
+            font-size: 18px;
+            line-height: 1.8;
+            margin-bottom: var(--movix-space-md);
+        }
+
+        .values-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: var(--movix-space-lg);
+            margin-top: var(--movix-space-xl);
+        }
+
+        .value-card {
+            background: var(--movix-white);
+            padding: var(--movix-space-xl);
+            border-radius: var(--movix-radius-lg);
+            text-align: center;
+            box-shadow: var(--movix-shadow-sm);
+        }
+
+        .value-icon {
+            font-size: 56px;
+            margin-bottom: var(--movix-space-md);
+        }
+
+        .value-card h4 {
+            color: var(--movix-primary);
+            font-size: 22px;
+            margin-bottom: var(--movix-space-sm);
+        }
+
+        .timeline {
+            position: relative;
+            padding-left: 40px;
+            margin-top: var(--movix-space-xl);
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 15px;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background: var(--movix-primary-light);
+        }
+
+        .timeline-item {
+            background: var(--movix-white);
+            padding: var(--movix-space-lg);
+            border-radius: var(--movix-radius-lg);
+            margin-bottom: var(--movix-space-lg);
+            position: relative;
+            box-shadow: var(--movix-shadow-sm);
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -29px;
+            top: 24px;
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background: var(--movix-accent);
+            border: 3px solid var(--movix-white);
+        }
+
+        .timeline-date {
+            color: var(--movix-accent);
+            font-weight: 700;
+            font-size: 18px;
+            margin-bottom: var(--movix-space-sm);
+        }
+
+        .timeline-item h4 {
+            color: var(--movix-primary);
+            font-size: 20px;
+            margin-bottom: var(--movix-space-sm);
+        }
+
+        footer {
+            background-color: var(--movix-primary-dark);
+            color: var(--movix-white);
+            padding: var(--movix-space-2xl) 0;
+            margin-top: var(--movix-space-3xl);
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: var(--movix-space-xl);
+            margin-bottom: var(--movix-space-xl);
+        }
+
+        footer h4 {
+            margin-bottom: var(--movix-space-md);
+            font-size: 18px;
+        }
+
+        footer ul {
+            list-style: none;
+        }
+
+        footer li {
+            margin-bottom: var(--movix-space-sm);
+        }
+
+        footer a {
+            color: var(--movix-white);
+            text-decoration: none;
+            opacity: 0.8;
+            transition: opacity var(--movix-transition-base);
+        }
+
+        footer a:hover {
+            opacity: 1;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: var(--movix-space-xl);
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+            opacity: 0.7;
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 32px; }
+            h2 { font-size: 28px; }
+            nav ul { display: none; }
+            .timeline { padding-left: 20px; }
+            .timeline::before { left: 5px; }
+            .timeline-item::before { left: -19px; }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="container">
+            <div class="logo">Movix</div>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="lijnen.html">Lijnennetwerk</a></li>
+                <li><a href="innovatie.html">Innovatie</a></li>
+                <li><a href="over.html">Over Ons</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <div class="container">
+            <h1>Over Movix</h1>
+            <p>Ons verhaal, onze visie, onze missie</p>
+        </div>
+    </section>
+
+    <section>
+        <div class="container">
+            <h2>Wie zijn wij?</h2>
+            
+            <div class="content-box">
+                <h3>Ons Verhaal</h3>
+                <p>
+                    Movix is geboren uit de droom om West-Brabant te transformeren met modern, duurzaam openbaar vervoer. We geloven dat mobiliteit een basisrecht is en dat iedereen toegang moet hebben tot betrouwbaar, betaalbaar en milieuvriendelijk vervoer.
+                </p>
+                <p>
+                    Momenteel bevinden we ons in de conceptfase. We werken hard aan het ontwikkelen van een ambitieus plan dat alle steden en dorpen in West-Brabant zal verbinden. Van Breda tot Bergen op Zoom, van Roosendaal tot Oosterhout - niemand wordt achtergelaten.
+                </p>
+                <p>
+                    Ons team bestaat uit gepassioneerde professionals met ervaring in openbaar vervoer, duurzaamheid, technologie en stedelijke planning. Samen bouwen we aan de toekomst van mobiliteit in West-Brabant.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <section style="background: var(--movix-white);">
+        <div class="container">
+            <h2>Onze Missie & Visie</h2>
+            
+            <div class="content-box" style="box-shadow: none;">
+                <h3>🎯 Onze Missie</h3>
+                <p>
+                    Het leveren van hoogwaardig, duurzaam en toegankelijk openbaar vervoer dat West-Brabant verbindt en de levenskwaliteit van alle inwoners verbetert. We streven naar een toekomst waarin iedereen zich gemakkelijk, betaalbaar en milieuvriendelijk kan verplaatsen.
+                </p>
+            </div>
+
+            <div class="content-box" style="box-shadow: none;">
+                <h3>🔭 Onze Visie</h3>
+                <p>
+                    We zien een West-Brabant waarin openbaar vervoer de eerste keuze is voor zowel dagelijkse verplaatsingen als speciale gelegenheden. Een regio waar steden en dorpen naadloos met elkaar verbonden zijn, waar mobiliteit geen barrière vormt en waar ons vervoersysteem bijdraagt aan een schonere, gezondere en sociaal verbonden samenleving.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <div class="container">
+            <h2>Onze Kernwaarden</h2>
+            <p style="text-align: center; color: var(--movix-dark-gray); font-size: 18px; margin-bottom: 32px;">
+                Deze waarden sturen ons in alles wat we doen
+            </p>
+
+            <div class="values-grid">
+                <div class="value-card">
+                    <div class="value-icon">🌍</div>
+                    <h4>Duurzaamheid</h4>
+                    <p>100% elektrisch, CO2-neutraal en circulair. We nemen onze verantwoordelijkheid voor het milieu serieus.</p>
+                </div>
+
+                <div class="value-card">
+                    <div class="value-icon">🤝</div>
+                    <h4>Toegankelijkheid</h4>
+                    <p>Voor iedereen, altijd. Onze diensten zijn fysiek én financieel toegankelijk voor alle inwoners.</p>
+                </div>
+
+                <div class="value-card">
+                    <div class="value-icon">💡</div>
+                    <h4>Innovatie</h4>
+                    <p>We omarmen nieuwe technologieën en slimme oplossingen om het reizen gemakkelijker te maken.</p>
+                </div>
+
+                <div class="value-card">
+                    <div class="value-icon">⏰</div>
+                    <h4>Betrouwbaarheid</h4>
+                    <p>Op tijd, elke keer. We streven naar maximale punctualiteit en voorspelbaarheid.</p>
+                </div>
+
+                <div class="value-card">
+                    <div class="value-icon">❤️</div>
+                    <h4>Klanttevredenheid</h4>
+                    <p>Luisteren naar onze reizigers en continu verbeteren op basis van hun feedback.</p>
+                </div>
+
+                <div class="value-card">
+                    <div class="value-icon">🏘️</div>
+                    <h4>Gemeenschap</h4>
+                    <p>We verbinden mensen en plaatsen, en dragen bij aan levendige gemeenschappen in West-Brabant.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section style="background: var(--movix-white);">
+        <div class="container">
+            <h2>Onze Roadmap</h2>
+            <p style="text-align: center; color: var(--movix-dark-gray); font-size: 18px; margin-bottom: 32px;">
+                Zo gaan we Movix van concept naar werkelijkheid brengen
+            </p>
+
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-date">2024 - Heden</div>
+                    <h4>Fase 1: Concept & Planning</h4>
+                    <p>
+                        Ontwikkeling van het Movix concept, netwerk planning, stakeholder consultaties en haalbaarheidsonderzoeken. Opbouwen van partnerships met gemeenten, overheden en lokale organisaties.
+                    </p>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-date">2025 (Gepland)</div>
+                    <h4>Fase 2: Financiering & Vergunningen</h4>
+                    <p>
+                        Het veiligstellen van financiering via investeerders, subsidies en partnerships. Aanvragen van benodigde vergunningen en concessies. Definitief netwerk design en routeplanning.
+                    </p>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-date">2026 (Gepland)</div>
+                    <h4>Fase 3: Infrastructuur & Vloot</h4>
+                    <p>
+                        Aanschaf van elektrische bussen, aanleg van laadinfrastructuur, bouw/renovatie van busstations. Ontwikkeling van de Movix app en IT-systemen. Werving en training van personeel.
+                    </p>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-date">2027 (Gepland)</div>
+                    <h4>Fase 4: Pilot & Testfase</h4>
+                    <p>
+                        Lancering van een pilot met beperkt aantal lijnen in geselecteerde steden. Testen van alle systemen, verzamelen van feedback en doorvoeren van verbeteringen.
+                    </p>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-date">2028 (Gepland)</div>
+                    <h4>Fase 5: Volledige Lancering</h4>
+                    <p>
+                        Gefaseerde uitrol van het volledige Movix netwerk door heel West-Brabant. Alle lijnen operationeel, inclusief snellijnen, nachtlijnen en speciale diensten.
+                    </p>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-date">2030 (Ambitie)</div>
+                    <h4>Fase 6: Expansie & Optimalisatie</h4>
+                    <p>
+                        Uitbreiding naar nieuwe gebieden, toevoegen van extra lijnen op basis van vraag, implementeren van verdere innovaties zoals autonome bussen en geïntegreerde MaaS (Mobility as a Service).
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section style="background: linear-gradient(135deg, #3F51B5 0%, #5C6BC0 100%); color: white; padding: 64px 0;">
+        <div class="container" style="text-align: center;">
+            <h2 style="color: white; margin-bottom: 24px;">Waarom West-Brabant?</h2>
+            <div style="max-width: 800px; margin: 0 auto;">
+                <p style="font-size: 18px; line-height: 1.8; opacity: 0.95; margin-bottom: 24px;">
+                    West-Brabant is een dynamische regio met sterke steden, levendige dorpen en een groeiende economie. Toch ontbreekt het aan een modern, geïntegreerd openbaar vervoersnetwerk dat de regio echt verbindt.
+                </p>
+                <p style="font-size: 18px; line-height: 1.8; opacity: 0.95;">
+                    Movix komt die leemte opvullen. We geloven in het potentieel van West-Brabant en willen bijdragen aan een duurzame, mobiele toekomst voor alle 750.000+ inwoners van deze prachtige regio.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <div class="container">
+            <h2>Partnerships & Samenwerking</h2>
+            <div class="content-box" style="text-align: center;">
+                <p style="font-size: 18px; margin-bottom: 24px;">
+                    Movix kan niet alleen. We zoeken actief partnerships met:
+                </p>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 24px; margin-top: 32px;">
+                    <div>
+                        <div style="font-size: 48px; margin-bottom: 8px;">🏛️</div>
+                        <h4 style="color: var(--movix-primary);">Gemeenten</h4>
+                        <p>Lokale overheden in West-Brabant</p>
+                    </div>
+                    <div>
+                        <div style="font-size: 48px; margin-bottom: 8px;">💼</div>
+                        <h4 style="color: var(--movix-primary);">Investeerders</h4>
+                        <p>Voor financiering en groei</p>
+                    </div>
+                    <div>
+                        <div style="font-size: 48px; margin-bottom: 8px;">🚌</div>
+                        <h4 style="color: var(--movix-primary);">Voertuigfabrikanten</h4>
+                        <p>Voor moderne elektrische bussen</p>
+                    </div>
+                    <div>
+                        <div style="font-size: 48px; margin-bottom: 8px;">💻</div>
+                        <h4 style="color: var(--movix-primary);">Tech Partners</h4>
+                        <p>Voor apps en IT-oplossingen</p>
+                    </div>
+                </div>
+                <p style="font-size: 16px; margin-top: 32px;">
+                    <a href="contact.html" style="color: var(--movix-accent); text-decoration: none; font-weight: 600;">
+                        Geïnteresseerd in een partnership? Neem contact met ons op →
+                    </a>
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div>
+                    <h4>Movix West-Brabant</h4>
+                    <p style="opacity: 0.8; line-height: 1.6; margin-top: 8px;">
+                        Een ambitieus concept voor modern, duurzaam openbaar vervoer in West-Brabant.
+                    </p>
+                </div>
+                
+                <div>
+                    <h4>Navigatie</h4>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="lijnen.html">Lijnennetwerk</a></li>
+                        <li><a href="innovatie.html">Innovatie</a></li>
+                        <li><a href="over.html">Over Ons</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4>Contact</h4>
+                    <ul>
+                        <li><a href="mailto:info@movix-concept.nl">📧 info@movix-concept.nl</a></li>
+                        <li><a href="contact.html">💬 Contactformulier</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2024 Movix West-Brabant. Alle rechten voorbehouden.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
