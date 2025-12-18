@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movix OV</title>
+    <link rel="icon" href="favicon.png">
+
+    {% seo %}
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Quicksand', sans-serif;
+            background: #F5F5F5;
+            color: #424242;
+            line-height: 1.6;
+        }
+
+        .hero {
+            background: linear-gradient(135deg, #3F51B5 0%, #5C6BC0 100%);
+            color: white;
+            padding: 100px 20px;
+            text-align: center;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 72px;
+            font-weight: 700;
+            letter-spacing: 4px;
+            margin-bottom: 24px;
+        }
+
+        .tagline {
+            font-size: 32px;
+            margin-bottom: 16px;
+            opacity: 0.95;
+        }
+
+        .subtitle {
+            font-size: 20px;
+            opacity: 0.85;
+            margin-bottom: 48px;
+            max-width: 600px;
+        }
+
+        .status-badge {
+            background: rgba(255,255,255,0.2);
+            display: inline-block;
+            padding: 12px 32px;
+            border-radius: 30px;
+            font-size: 18px;
+            margin-bottom: 48px;
+            backdrop-filter: blur(10px);
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .btn {
+            padding: 18px 40px;
+            border-radius: 12px;
+            font-size: 18px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .btn-primary {
+            background: #FF6E40;
+            color: white;
+            box-shadow: 0 4px 12px rgba(255,110,64,0.3);
+        }
+
+        .btn-primary:hover {
+            background: #F4511E;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(255,110,64,0.4);
+        }
+
+        .btn-secondary {
+            background: rgba(255,255,255,0.2);
+            color: white;
+            border: 2px solid white;
+            backdrop-filter: blur(10px);
+        }
+
+        .btn-secondary:hover {
+            background: white;
+            color: #3F51B5;
+        }
+
+        .content {
+            max-width: 1000px;
+            margin: -80px auto 0;
+            padding: 0 20px 80px;
+            position: relative;
+            z-index: 10;
+        }
+
+        .info-box {
+            background: white;
+            padding: 48px;
+            border-radius: 16px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+            margin-bottom: 32px;
+        }
+
+        .info-box h2 {
+            color: #3F51B5;
+            font-size: 36px;
+            margin-bottom: 24px;
+        }
+
+        .info-box p {
+            font-size: 18px;
+            line-height: 1.8;
+            margin-bottom: 16px;
+            color: #424242;
+        }
+
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 24px;
+            margin-top: 32px;
+        }
+
+        .feature {
+            background: #F5F5F5;
+            padding: 32px;
+            border-radius: 12px;
+            text-align: center;
+            border-left: 4px solid #3F51B5;
+        }
+
+        .feature-icon {
+            font-size: 56px;
+            margin-bottom: 16px;
+        }
+
+        .feature h3 {
+            color: #3F51B5;
+            font-size: 22px;
+            margin-bottom: 12px;
+        }
+
+        .feature p {
+            font-size: 16px;
+            color: #666;
+        }
+
+        .download-section {
+            background: linear-gradient(135deg, #3F51B5 0%, #5C6BC0 100%);
+            color: white;
+            padding: 60px;
+            border-radius: 16px;
+            text-align: center;
+            margin-top: 32px;
+        }
+
+        .download-section h2 {
+            font-size: 36px;
+            margin-bottom: 16px;
+            color: white;
+        }
+
+        .download-section p {
+            font-size: 20px;
+            margin-bottom: 32px;
+            opacity: 0.95;
+            color: white;
+        }
+
+        footer {
+            background: #303F9F;
+            color: white;
+            padding: 40px 20px;
+            text-align: center;
+        }
+
+        footer p {
+            opacity: 0.8;
+            font-size: 15px;
+        }
+
+        @media (max-width: 768px) {
+            .logo {
+                font-size: 48px;
+            }
+            .tagline {
+                font-size: 24px;
+            }
+            .subtitle {
+                font-size: 16px;
+            }
+            .info-box {
+                padding: 32px 24px;
+            }
+            .info-box h2 {
+                font-size: 28px;
+            }
+            .download-section {
+                padding: 40px 24px;
+            }
+            .cta-buttons {
+                flex-direction: column;
+            }
+            .btn {
+                width: 100%;
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="hero">
+        <div class="status-badge">⏳ In ontwikkeling</div>
+        <div class="logo"><img src="favicon.png" alt="Movix Logo"
+                               style="height: 72px; vertical-align: middle; margin-right: 16px;">Movix
+        </div>
+        <div class="tagline">Beter openbaar vervoer voor iedereen</div>
+        <div class="subtitle">
+            Goedkoper, makkelijker en toegankelijker openbaar vervoer in heel Nederland
+        </div>
+        <div class="cta-buttons">
+            <a href="#download" class="btn btn-primary">
+                📄 Download "Wat is Movix?"
+            </a>
+            <a href="#info" class="btn btn-secondary">
+                ℹ️ Meer informatie
+            </a>
+        </div>
+    </div>
+
+    <div class="content">
+        <div class="info-box" id="info">
+            <h2>Wat Doet Movix?</h2>
+            <p>
+                Movix onderzoekt hoe openbaar vervoer verbeterd kan worden op plekken waar het nu tekortschiet,
+                zoals gebieden met weinig verbindingen, lage frequenties of beperkt avond- en nachtvervoer.
+            </p>
+            <p>
+                De focus ligt op het in kaart brengen van knelpunten en kansen, zoals betere verbindingen naar
+                kleinere dorpen, hogere frequenties op bestaande lijnen en aanvullend vervoer buiten de spits.
+            </p>
+
+            <div class="features">
+                <div class="feature">
+                    <div class="feature-icon">🏘️</div>
+                    <h3>Mogelijke verbindingen voor kleinere dorpen</h3>
+                    <p>Onderzoek naar betere bereikbaarheid van dorpen en gebieden die nu beperkt of geen openbaar vervoer hebben.</p>
+                </div>
+
+                <div class="feature">
+                    <div class="feature-icon">🔄</div>
+                    <h3>Onderzoek naar hogere frequenties</h3>
+                    <p>In kaart brengen waar bestaande lijnen mogelijk vaker zouden kunnen rijden om bereikbaarheid en betrouwbaarheid te verbeteren.</p>
+                </div>
+
+                <div class="feature">
+                    <div class="feature-icon">🌙</div>
+                    <h3>Verkenning van avond- en nachtvervoer</h3>
+                    <p>VOnderzoek naar de behoefte aan openbaar vervoer in de avond en nacht, zodat reizen ook buiten de spits mogelijk blijft.</p>
+                </div>
+
+                <div class="feature">
+                    <div class="feature-icon">🌱</div>
+                    <h3>Duurzame vervoersoplossingen</h3>
+                    <p>Verkennen hoe elektrische en waterstofbussen kunnen bijdragen aan schoner en comfortabeler openbaar vervoer.</p>
+                </div>
+
+                <div class="feature">
+                    <div class="feature-icon">♿</div>
+                    <h3>Toegankelijk basis-OV</h3>
+                    <p>Onderzoek naar basis-OV als recht: hoe iedereen toegang kan hebben tot openbaar vervoer, ongeacht woonplaats of beperking.</p>
+                </div>
+
+                <div class="feature">
+                    <div class="feature-icon">📱</div>
+                    <h3>Open reisinformatie</h3>
+                    <p>Onderzoek naar het gebruik van open data en standaarden zodat reisinformatie voor iedereen beschikbaar en begrijpelijk is.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="info-box">
+            <h2>Hoe Groeit Movix?</h2>
+            <p>
+                <strong>Nu:</strong> Movix bevindt zich in de ontwikkel- en onderzoeksfase.
+                De focus ligt op het verzamelen van ervaringen, het analyseren van knelpunten
+                en het verkennen van mogelijke oplossingen voor beter openbaar vervoer.
+            </p>
+            <p>
+                <strong>Later:</strong> Op basis van deze inzichten kan worden onderzocht
+                of samenwerking met gemeenten, provincies of andere partijen mogelijk is.
+            </p>
+            <p>
+                <strong>Toekomst:</strong> Eventuele vervolgstappen, zoals deelname aan
+                aanbestedingen of concessies, zijn afhankelijk van wetgeving,
+                besluitvorming door overheden en beschikbare samenwerkingen.
+            </p>
+
+            <p style="font-size: 14px; opacity: 0.8; margin-top: 16px;">
+                Movix is momenteel een concept en onderzoeksproject.
+                Er worden geen vervoersdiensten uitgevoerd en er bestaan geen rechten
+                op concessies of lijnen.
+            </p>
+        </div>
+
+        <div class="download-section" id="download">
+            <h2>📄 Download Onze Visie</h2>
+            <p>
+                Wil je meer weten over Movix, onze aanpak en onze plannen? 
+                Download het "Wat is Movix?" document met alle informatie.
+            </p>
+            <a href="Wat%20is%20Movix%3F.pdf" class="btn btn-primary" download style="background: white; color: #3F51B5;">
+                📥 Download PDF (Wat is Movix?)
+            </a>
+            <p style="font-size: 14px; margin-top: 24px; opacity: 0.8;">
+                PDF bevat: Onze visie, Basis-OV als recht, Open data aanpak, Ontwikkelingsfases en meer
+            </p>
+        </div>
+    </div>
+
+    <footer>
+        <p style="font-size: 20px; font-weight: 600; margin-bottom: 8px;">Movix</p>
+        <p>Toekomstig openbaarvervoerbedrijf</p>
+        <p style="margin-top: 16px; font-size: 14px;">
+            &copy; 2024 Movix. Momenteel nog niet operationeel.
+        </p>
+    </footer>
+</body>
+</html>
