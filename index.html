@@ -3,480 +3,776 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Movix OV - Beter Openbaar Vervoer voor Iedereen</title>
+    <title>Movix OV - Bereikbaar. Voor iedereen.</title>
     <link rel="icon" href="favicon.png">
+    <meta name="description" content="Te weinig bussen. Te laat. Of helemaal niet. Vertel ons hoe het OV in jouw regio écht is.">
 
-    <meta name="description"
-          content="Movix onderzoekt hoe aanvullend openbaar vervoer in Nederland beter, toegankelijker en duurzamer kan worden ingericht.">
-
-    <!-- Open Graph -->
-    <meta property="og:title" content="Movix – Beter openbaar vervoer voor iedereen">
-    <meta property="og:description"
-          content="Movix onderzoekt hoe aanvullend openbaar vervoer gaten in het huidige OV-net kan opvullen.">
+    <meta property="og:title" content="Movix – Bereikbaar. Voor iedereen.">
+    <meta property="og:description" content="Te weinig bussen. Te laat. Of helemaal niet. Vertel ons hoe het OV in jouw regio écht is.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://www.movix-ov.nl">
     <meta property="og:image" content="https://www.movix-ov.nl/og-movix.png">
-    
+
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700&display=swap');
-        
+
+        :root {
+            --indigo: #3F51B5;
+            --indigo-dark: #303F9F;
+            --indigo-soft: #5C6BC0;
+            --orange: #FF6E40;
+            --orange-dark: #F4511E;
+            --gold-soft: #ffd54f;
+            --bg: #f5f6fb;
+            --card: #ffffff;
+            --text: #2e3342;
+            --muted: #666d84;
+            --line: #e3e8ff;
+            --shadow: 0 12px 32px rgba(40, 53, 120, 0.12);
+            --radius: 18px;
+        }
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
 
+        html {
+            scroll-behavior: smooth;
+        }
+
         body {
             font-family: 'Quicksand', sans-serif;
-            background: #F5F5F5;
-            color: #424242;
-            line-height: 1.6;
+            background: linear-gradient(180deg, #f8f9ff 0%, var(--bg) 180px);
+            color: var(--text);
+            line-height: 1.65;
+        }
+
+        .container {
+            width: min(1120px, 92vw);
+            margin: 0 auto;
+        }
+
+        .hero-wrap {
+            background: linear-gradient(140deg, var(--indigo-dark) 0%, var(--indigo) 55%, var(--indigo-soft) 100%);
+            color: white;
+            border-radius: 0 0 28px 28px;
+            box-shadow: 0 14px 34px rgba(48, 63, 159, 0.25);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-wrap::before,
+        .hero-wrap::after {
+            content: "";
+            position: absolute;
+            border-radius: 999px;
+            pointer-events: none;
+        }
+
+        .hero-wrap::before {
+            width: 440px;
+            height: 440px;
+            right: -150px;
+            top: -180px;
+            background: radial-gradient(circle, rgba(255,255,255,0.22) 0%, rgba(255,255,255,0) 70%);
+        }
+
+        .hero-wrap::after {
+            width: 360px;
+            height: 360px;
+            left: -140px;
+            bottom: -210px;
+            background: radial-gradient(circle, rgba(255,110,64,0.28) 0%, rgba(255,110,64,0) 70%);
         }
 
         .hero {
-            background: linear-gradient(135deg, #3F51B5 0%, #5C6BC0 100%);
-            color: white;
-            padding: 80px 20px 100px;
-            text-align: center;
+            min-height: 74vh;
+            padding: 34px 0 72px;
+            display: grid;
+            align-content: center;
+            gap: 16px;
         }
 
-        .logo-container {
+        .top-row {
             display: flex;
             align-items: center;
-            justify-content: center;
-            gap: 16px;
-            margin-bottom: 24px;
+            justify-content: flex-start;
+            gap: 14px;
         }
 
-        .logo-img {
-            height: 72px;
+        .brand {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+            color: white;
         }
 
-        .logo {
-            font-size: 72px;
+        .brand img {
+            width: 44px;
+            height: 44px;
+        }
+
+        .brand-name {
+            font-size: clamp(1.6rem, 2.3vw, 2.1rem);
             font-weight: 700;
-            letter-spacing: 4px;
-        }
-
-        .tagline {
-            font-size: 32px;
-            margin-bottom: 16px;
-            opacity: 0.95;
-        }
-
-        .subtitle {
-            font-size: 20px;
-            opacity: 0.85;
-            margin-bottom: 48px;
-            max-width: 700px;
-            margin-left: auto;
-            margin-right: auto;
+            letter-spacing: 0.04em;
         }
 
         .status-badge {
-            background: rgba(255,255,255,0.2);
-            display: inline-block;
-            padding: 10px 28px;
-            border-radius: 30px;
-            font-size: 16px;
-            margin-bottom: 40px;
-            backdrop-filter: blur(10px);
+            font-size: 0.82rem;
+            font-weight: 600;
+            padding: 6px 12px;
+            border-radius: 999px;
+            background: rgba(255, 255, 255, 0.18);
+            border: 1px solid rgba(255, 255, 255, 0.35);
+            width: fit-content;
+            margin-bottom: 4px;
         }
 
-        .cta-buttons {
+        .hero h1 {
+            font-size: clamp(2rem, 5vw, 3.4rem);
+            line-height: 1.1;
+            max-width: 760px;
+        }
+
+        .hero p {
+            max-width: 700px;
+            font-size: clamp(1.05rem, 2vw, 1.25rem);
+            opacity: 0.94;
+        }
+
+        .cta-row {
             display: flex;
-            gap: 20px;
             flex-wrap: wrap;
-            justify-content: center;
+            gap: 12px;
+            padding-top: 6px;
         }
 
         .btn {
-            padding: 16px 36px;
-            border-radius: 12px;
-            font-size: 17px;
-            font-weight: 600;
             text-decoration: none;
-            transition: all 0.3s ease;
-            cursor: pointer;
+            border-radius: 12px;
+            font-size: 1rem;
+            font-weight: 700;
+            padding: 13px 22px;
+            transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
             display: inline-flex;
             align-items: center;
-            gap: 10px;
-            border: none;
+            justify-content: center;
+            gap: 9px;
+            position: relative;
+            overflow: hidden;
         }
 
         .btn-primary {
-            background: #FF6E40;
+            background: var(--orange);
             color: white;
-            box-shadow: 0 4px 12px rgba(255,110,64,0.3);
+            box-shadow: 0 10px 20px rgba(255, 110, 64, 0.33);
         }
 
         .btn-primary:hover {
-            background: #F4511E;
             transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(255,110,64,0.4);
+            background: var(--orange-dark);
+        }
+
+        .btn::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(115deg, transparent 20%, rgba(255,255,255,0.35) 46%, transparent 70%);
+            transform: translateX(-140%);
+            transition: transform 0.45s ease;
+        }
+
+        .btn:hover::after {
+            transform: translateX(140%);
         }
 
         .btn-secondary {
-            background: rgba(255,255,255,0.2);
+            background: rgba(255, 255, 255, 0.14);
             color: white;
-            border: 2px solid white;
-            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.85);
         }
 
         .btn-secondary:hover {
-            background: white;
-            color: #3F51B5;
-        }
-
-        .content {
-            max-width: 1100px;
-            margin: -60px auto 0;
-            padding: 0 20px 80px;
-            position: relative;
-            z-index: 10;
-        }
-
-        .info-box {
-            background: white;
-            padding: 48px;
-            border-radius: 16px;
-            box-shadow: 0 8px 32px rgba(0,0,0,0.1);
-            margin-bottom: 32px;
-        }
-
-        .info-box h2 {
-            color: #3F51B5;
-            font-size: 36px;
-            margin-bottom: 24px;
-        }
-
-        .info-box p {
-            font-size: 18px;
-            line-height: 1.8;
-            margin-bottom: 16px;
-            color: #424242;
-        }
-
-        .info-box ul {
-            margin: 16px 0 16px 28px;
-        }
-
-        .info-box li {
-            font-size: 17px;
-            line-height: 1.7;
-            margin-bottom: 10px;
-        }
-
-        .info-box strong {
-            color: #3F51B5;
-            font-weight: 600;
-        }
-
-        .features {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 24px;
-            margin-top: 32px;
-        }
-
-        .feature {
-            background: #F5F5F5;
-            padding: 32px;
-            border-radius: 12px;
-            text-align: center;
-            border-left: 4px solid #3F51B5;
-            transition: all 0.3s ease;
-        }
-
-        .feature:hover {
-            box-shadow: 0 4px 16px rgba(0,0,0,0.1);
             transform: translateY(-2px);
+            background: white;
+            color: var(--indigo);
         }
 
-        .feature-icon {
-            font-size: 56px;
+        .main {
+            margin-top: -26px;
+            padding-bottom: 56px;
+        }
+
+        .section-label {
+            display: inline-block;
+            font-size: 0.8rem;
+            font-weight: 700;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            color: #6f79a7;
+            margin-bottom: 8px;
+            background: #f2f4ff;
+            padding: 4px 9px;
+            border-radius: 999px;
+            border: 1px solid #dce4ff;
+        }
+
+        .section {
+            background: var(--card);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            padding: 30px;
+            margin-bottom: 18px;
+            border: 1px solid #eef1ff;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .section::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--indigo) 0%, var(--indigo-soft) 55%, var(--orange) 100%);
+            opacity: 0.9;
+        }
+
+        .section h2 {
+            color: var(--indigo);
+            font-size: clamp(1.5rem, 3vw, 2rem);
+            margin-bottom: 10px;
+            letter-spacing: 0.01em;
+            position: relative;
+            width: fit-content;
+        }
+
+        .section h2::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            bottom: -4px;
+            width: 52%;
+            height: 3px;
+            border-radius: 999px;
+            background: linear-gradient(90deg, var(--orange) 0%, rgba(255,110,64,0) 100%);
+        }
+
+        .lead {
+            color: var(--muted);
+            margin-bottom: 18px;
+            max-width: 860px;
+            font-size: 1.03rem;
+        }
+
+        .focus-intro {
+            background: linear-gradient(180deg, #f2f4ff 0%, #edf0ff 100%);
+            border: 1px solid var(--line);
+            border-left: 4px solid var(--orange);
+            border-radius: 12px;
+            padding: 12px 14px;
+            font-weight: 700;
+            color: var(--indigo-dark);
             margin-bottom: 16px;
         }
 
-        .feature h3 {
-            color: #3F51B5;
-            font-size: 20px;
-            margin-bottom: 12px;
+
+        .focus-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 14px;
         }
 
-        .feature p {
-            font-size: 16px;
-            color: #666;
-            line-height: 1.6;
+        .focus-card {
+            padding: 16px;
+            border-radius: 14px;
+            background: linear-gradient(180deg, #f8f9ff 0%, #f2f5ff 100%);
+            border: 1px solid var(--line);
+            transition: transform 0.22s ease, box-shadow 0.22s ease, border-color 0.22s ease;
+            position: relative;
         }
 
-        .disclaimer {
-            background: #FFF3E0;
-            border-left: 4px solid #FF6E40;
-            padding: 20px;
+        .focus-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 22px rgba(63, 81, 181, 0.16);
+            border-color: #c8d5ff;
+        }
+
+
+        .focus-icon {
+            width: 58px;
+            height: 58px;
+            border-radius: 50%;
+            background: white;
+            border: 1px solid #d9e0ff;
+            display: grid;
+            place-items: center;
+            font-size: 2rem;
+            margin-bottom: 10px;
+            box-shadow: 0 5px 14px rgba(63, 81, 181, 0.15);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .focus-card:hover .focus-icon {
+            transform: scale(1.07) rotate(-4deg);
+            box-shadow: 0 8px 18px rgba(63, 81, 181, 0.2);
+        }
+
+        .focus-card h3 {
+            color: var(--indigo);
+            font-size: 1rem;
+            margin-bottom: 6px;
+            line-height: 1.3;
+        }
+
+        .focus-card p {
+            font-size: 0.95rem;
+            color: var(--muted);
+            line-height: 1.5;
+        }
+
+        .story-grid {
+            display: flex;
+            flex-direction: row;
+            gap: 12px;
+            margin-top: 10px;
+        }
+
+        .story-card {
+            background: #f8f9ff;
+            border: 1px solid var(--line);
+            border-radius: 12px;
+            padding: 14px;
+            flex: 1;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .story-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 18px rgba(63, 81, 181, 0.12);
+        }
+
+        .story-card h3 {
+            font-size: 1.02rem;
+            color: var(--indigo);
+            margin-bottom: 6px;
+        }
+
+        .story-card p {
+            font-size: 0.95rem;
+            color: var(--muted);
+            line-height: 1.55;
+        }
+
+        .mini-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 12px;
+            margin-top: 12px;
+        }
+
+        .mini-card {
+            background: #f8f9ff;
+            border: 1px solid var(--line);
+            border-radius: 12px;
+            padding: 12px;
+            transition: border-color 0.2s ease, transform 0.2s ease;
+        }
+
+        .mini-card:hover {
+            border-color: #c8d5ff;
+            transform: translateY(-1px);
+        }
+
+        .mini-card strong {
+            display: block;
+            color: var(--indigo);
+            margin-bottom: 4px;
+        }
+
+        .timeline {
+            margin-top: 12px;
+            display: grid;
+            gap: 10px;
+        }
+
+        .timeline-item {
+            display: grid;
+            grid-template-columns: auto 1fr;
+            gap: 10px;
+            align-items: start;
+            background: #f8f9ff;
+            border: 1px solid var(--line);
+            border-radius: 12px;
+            padding: 12px;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .timeline-item:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 8px 18px rgba(63, 81, 181, 0.1);
+        }
+
+        .timeline-phase {
+            background: var(--indigo);
+            color: white;
             border-radius: 8px;
-            margin-top: 24px;
-        }
-
-        .disclaimer p {
-            font-size: 15px;
-            color: #666;
-            margin: 0;
-            line-height: 1.6;
-        }
-
-        .download-section {
-            background: linear-gradient(135deg, #3F51B5 0%, #5C6BC0 100%);
-            color: white;
-            padding: 60px 48px;
-            border-radius: 16px;
+            font-size: 0.82rem;
+            font-weight: 700;
+            padding: 6px 8px;
+            min-width: 58px;
             text-align: center;
-            margin-top: 32px;
+            box-shadow: 0 4px 10px rgba(63, 81, 181, 0.22);
         }
 
-        .download-section h2 {
-            font-size: 36px;
-            margin-bottom: 16px;
+        .timeline-item h3 {
+            color: var(--indigo);
+            font-size: 1rem;
+            margin-bottom: 2px;
+        }
+
+        .timeline-item p {
+            color: var(--muted);
+            font-size: 0.95rem;
+        }
+
+        .faq-list {
+            display: grid;
+            gap: 10px;
+            margin-top: 12px;
+        }
+
+        .faq-item {
+            background: #f8f9ff;
+            border: 1px solid var(--line);
+            border-radius: 12px;
+            overflow: hidden;
+            transition: border-color 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .faq-item:hover {
+            border-color: #c8d5ff;
+            box-shadow: 0 8px 16px rgba(63, 81, 181, 0.08);
+        }
+
+        .faq-item summary {
+            cursor: pointer;
+            list-style: none;
+            color: var(--indigo);
+            font-size: 1rem;
+            font-weight: 700;
+            padding: 12px;
+        }
+
+        .faq-item summary::-webkit-details-marker {
+            display: none;
+        }
+
+        .faq-item summary::after {
+            content: "+";
+            float: right;
+            font-size: 1.1rem;
+            line-height: 1;
+        }
+
+        .faq-item[open] summary::after {
+            content: "−";
+        }
+
+        .faq-answer {
+            color: var(--muted);
+            font-size: 0.95rem;
+            padding: 0 12px 12px;
+        }
+
+        .section {
+            animation: fadeInUp 0.5s ease both;
+        }
+
+        .section:nth-of-type(2) { animation-delay: 0.05s; }
+        .section:nth-of-type(3) { animation-delay: 0.1s; }
+        .section:nth-of-type(4) { animation-delay: 0.15s; }
+        .section:nth-of-type(5) { animation-delay: 0.2s; }
+        .section:nth-of-type(6) { animation-delay: 0.25s; }
+        .section:nth-of-type(7) { animation-delay: 0.3s; }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(16px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .section {
+                animation: none;
+            }
+            .btn::after {
+                display: none;
+            }
+        }
+
+
+        .cta-section {
+            background: linear-gradient(135deg, var(--indigo) 0%, var(--indigo-soft) 100%);
+            color: white;
+            text-align: center;
+            border: none;
+        }
+
+        .cta-section::before {
+            background: linear-gradient(90deg, #ffffff 0%, var(--gold-soft) 50%, #ffffff 100%);
+            opacity: 0.45;
+        }
+
+        .cta-section h2,
+        .cta-section p {
             color: white;
         }
 
-        .download-section p {
-            font-size: 19px;
-            margin-bottom: 32px;
+        .cta-section p {
+            max-width: 860px;
+            margin: 0 auto;
             opacity: 0.95;
-            color: white;
         }
 
         footer {
-            background: #303F9F;
+            background: var(--indigo-dark);
             color: white;
-            padding: 48px 20px;
             text-align: center;
+            padding: 34px 20px;
         }
 
         footer p {
-            opacity: 0.8;
-            font-size: 15px;
-            line-height: 1.6;
+            opacity: 0.9;
+            font-size: 0.95rem;
         }
 
         footer .footer-title {
-            font-size: 24px;
-            font-weight: 600;
-            margin-bottom: 12px;
-            opacity: 1;
+            font-size: 1.35rem;
+            font-weight: 700;
+            margin-bottom: 8px;
         }
 
-        @media (max-width: 768px) {
-            .logo {
-                font-size: 48px;
+        @media (max-width: 980px) {
+            .focus-grid {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
             }
-            .logo-img {
-                height: 48px;
-            }
-            .tagline {
-                font-size: 24px;
-            }
-            .subtitle {
-                font-size: 17px;
-            }
-            .info-box {
-                padding: 32px 24px;
-            }
-            .info-box h2 {
-                font-size: 28px;
-            }
-            .download-section {
-                padding: 40px 24px;
-            }
-            .cta-buttons {
+
+            .story-grid {
                 flex-direction: column;
-                width: 100%;
             }
-            .btn {
-                width: 100%;
-                justify-content: center;
-            }
-            .features {
+
+            .mini-grid {
                 grid-template-columns: 1fr;
             }
         }
 
-        .smooth-scroll {
-            scroll-behavior: smooth;
+        @media (max-width: 680px) {
+            .hero {
+                min-height: auto;
+                padding-bottom: 58px;
+            }
+
+            .top-row {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .cta-row {
+                width: 100%;
+            }
+
+            .btn {
+                width: 100%;
+            }
+
+            .section {
+                padding: 22px 18px;
+            }
+
+            .focus-grid {
+                grid-template-columns: 1fr;
+            }
         }
     </style>
 </head>
-<body class="smooth-scroll">
-    <div class="hero">
-        <div class="status-badge">⏳ In ontwikkeling</div>
-        <div class="logo-container">
-            <img src="favicon.png" alt="Movix Logo" class="logo-img">
-            <div class="logo">Movix</div>
-        </div>
-        <div class="tagline">Beter openbaar vervoer voor iedereen</div>
-        <div class="subtitle">
-            Goedkoper, makkelijker en toegankelijker openbaar vervoer in heel Nederland
-        </div>
-        <div class="cta-buttons">
-            <a href="#download" class="btn btn-primary">
-                📄 Download "Wat is Movix?"
-            </a>
-            <a href="http://denkmee.movix-ov.nl" class="btn btn-secondary">
-                📝 Vul de enquête in
-                <br>(Voor reizigers in Zeeland, Brabant en Limburg)
-            </a>
-        </div>
-    </div>
+<body>
+    <header class="hero-wrap">
+        <div class="container hero">
+            <div class="top-row">
+                <a class="brand" href="#">
+                    <img src="favicon.png" alt="Movix logo">
+                    <span class="brand-name">Movix</span>
+                </a>
+            </div>
 
-    <div class="content">
-        <div class="info-box" id="info">
-            <h2>Wat Doet Movix?</h2>
-            <p>
-                Movix onderzoekt hoe openbaar vervoer verbeterd kan worden op plekken waar het nu tekortschiet,
-                zoals gebieden met weinig verbindingen, lage frequenties of beperkt avond- en nachtvervoer.
-            </p>
-            <p>
-                De focus ligt op het in kaart brengen van knelpunten en kansen, zoals betere verbindingen naar
-                kleinere dorpen, hogere frequenties op bestaande lijnen en aanvullend vervoer buiten de spits.
-            </p>
+            <div class="status-badge">📍 Zeeland • Noord-Brabant • Limburg</div>
+            <h1>Bereikbaar. Voor iedereen.</h1>
+            <p>Een uur met het OV en de auto maar 20 minuten? Geen bus laat naar huis? Dit kan niet, toch? Samen bewijzen we dat het anders kan.</p>
 
-            <div class="features">
-                <div class="feature">
-                    <div class="feature-icon">🏘️</div>
-                    <h3>Mogelijke verbindingen voor kleinere dorpen</h3>
-                    <p>Onderzoek naar betere bereikbaarheid van dorpen en gebieden die nu beperkt of geen openbaar vervoer hebben</p>
-                </div>
-
-                <div class="feature">
-                    <div class="feature-icon">🔄</div>
-                    <h3>Onderzoek naar hogere frequenties</h3>
-                    <p>In kaart brengen waar bestaande lijnen mogelijk vaker zouden kunnen rijden om bereikbaarheid en betrouwbaarheid te verbeteren</p>
-                </div>
-
-                <div class="feature">
-                    <div class="feature-icon">🌙</div>
-                    <h3>Verkenning van avond- en nachtvervoer</h3>
-                    <p>Onderzoek naar de behoefte aan openbaar vervoer in de avond en nacht, zodat reizen ook buiten de spits mogelijk blijft</p>
-                </div>
-
-                <div class="feature">
-                    <div class="feature-icon">🌱</div>
-                    <h3>Duurzame vervoersoplossingen</h3>
-                    <p>Verkennen hoe elektrische en waterstofbussen kunnen bijdragen aan schoner en comfortabeler openbaar vervoer</p>
-                </div>
-
-                <div class="feature">
-                    <div class="feature-icon">♿</div>
-                    <h3>Toegankelijk basis-OV</h3>
-                    <p>Onderzoek naar basis-OV als recht: hoe iedereen toegang kan hebben tot openbaar vervoer, ongeacht woonplaats of beperking</p>
-                </div>
-
-                <div class="feature">
-                    <div class="feature-icon">📱</div>
-                    <h3>Open reisinformatie</h3>
-                    <p>Onderzoek naar het gebruik van open data en standaarden zodat reisinformatie voor iedereen beschikbaar en begrijpelijk is</p>
-                </div>
+            <div class="cta-row">
+                <a href="http://denkmee.movix-ov.nl" class="btn btn-primary">📝 Vul de enquête in</a>
+                <a href="#features" class="btn btn-secondary">🔍 Bekijk onze focuspunten</a>
             </div>
         </div>
+    </header>
 
-        <div class="info-box">
-            <h2>Basis-OV als Recht</h2>
-            <p>
-                Iedereen moet toegang hebben tot openbaar vervoer. In ons onderzoek kijken we naar 
-                wat een minimum Basis-OV recht zou kunnen zijn:
-            </p>
-            <ul>
-                <li><strong>Loopafstand:</strong> Max 10-15 minuten lopen naar een halte (20-30 minuten lopen buiten de bebouwde kom)</li>
-                <li><strong>Diensttijden:</strong> Minimaal diensten overdag + avond + weekend (in de spits altijd elk halfuur)</li>
-                <li><strong>Verbindingen:</strong> Verbinding met minstens één knooppunt, centrum en treinstation</li>
-                <li><strong>Toegankelijkheid:</strong> Rolstoeltoegankelijke bus en halte, veilige verlichte halte met bord, en een schone werkende bus</li>
-            </ul>
+    <main class="main">
+        <div class="container">
+            <section class="section" id="features">
+                <span class="section-label">Focus van Movix</span>
+                <h2>Onze Focuspunten</h2>
+                <p class="focus-intro">Wij geloven dat mobiliteit een basisrecht is. Daarom richten wij ons onderzoek op deze zes cruciale verbeterpunten.</p>
+                <div class="focus-grid">
+                    <article class="focus-card">
+                        <div class="focus-icon">🏘️</div>
+                        <h3>Verbindingen voor kleinere dorpen</h3>
+                        <p>Betere bereikbaarheid voor gebieden die nu beperkt of geen openbaar vervoer hebben.</p>
+                    </article>
+                    <article class="focus-card">
+                        <div class="focus-icon">🔄</div>
+                        <h3>Hogere frequenties</h3>
+                        <p>Onderzoek naar lijnen die vaker kunnen rijden voor meer betrouwbaarheid en flexibiliteit.</p>
+                    </article>
+                    <article class="focus-card">
+                        <div class="focus-icon">🌙</div>
+                        <h3>Avond- en nachtvervoer</h3>
+                        <p>Inzicht in behoefte aan vervoer buiten de spits en buiten standaard diensturen.</p>
+                    </article>
+                    <article class="focus-card">
+                        <div class="focus-icon">🌱</div>
+                        <h3>Duurzame oplossingen</h3>
+                        <p>Verkennen van schone alternatieven zoals elektrische en waterstofmobiliteit.</p>
+                    </article>
+                    <article class="focus-card">
+                        <div class="focus-icon">♿</div>
+                        <h3>Toegankelijk Basis-OV</h3>
+                        <p>Hoe openbaar vervoer toegankelijk blijft voor iedereen, ongeacht beperking of woonplaats.</p>
+                    </article>
+                    <article class="focus-card">
+                        <div class="focus-icon">📱</div>
+                        <h3>Open reisinformatie</h3>
+                        <p>Betrouwbare, begrijpelijke en vrij beschikbare reisinformatie via open standaarden.</p>
+                    </article>
+                </div>
+            </section>
+
+            <section class="section">
+                <span class="section-label">Wie & Waar</span>
+                <h2>Vanuit de regio, voor de regio</h2>
+                <p class="lead">Movix is niet bedacht in een kantoorpand in de Randstad, maar in de praktijk van reizigers die dagelijks afhankelijk zijn van betrouwbaar openbaar vervoer.</p>
+                <div class="story-grid">
+                    <article class="story-card">
+                        <h3>1. De oorsprong</h3>
+                        <p>Movix is ontstaan uit een persoonlijke frustratie in de regio Zuid-Nederland. Terwijl de steden steeds beter verbonden raken, zagen wij de bushaltes in onze eigen dorpen in West-Brabant, Zeeland en Limburg langzaam verdwijnen. Wij zijn geen consultants van buitenaf; wij zijn de reizigers die zelf bij de halte stonden te wachten.</p>
+                    </article>
+                    <article class="story-card">
+                        <h3>2. Wie wij zijn</h3>
+                        <p>Wij zijn een team van jonge OV-enthousiastelingen. Geleid door Thijmen (16) combineren we een passie voor techniek (data en IT) met een sterk rechtvaardigheidsgevoel voor regionale mobiliteit. Wij geloven dat de volgende generatie een stem moet hebben in hoe het land bereikbaar blijft.</p>
+                    </article>
+                    <article class="story-card">
+                        <h3>3. Onze missie</h3>
+                        <p>Wij komen uit een generatie die afhankelijk is van goed OV voor school, werk en sociale contacten. Onze missie is simpel: data gebruiken om aan te tonen dat de regio niet mag worden afgeschreven. Wij zijn de brug tussen de reiziger aan de halte en de beleidsmaker aan de tafel.</p>
+                    </article>
+                </div>
+            </section>
+
+            <section class="section">
+                <span class="section-label">Onderzoeksbasis</span>
+                <h2>Basis-OV als Recht</h2>
+                <p class="lead">Wij zien openbaar vervoer als een publieke basisvoorziening. Dit gebruiken we als richting voor ons onderzoek.</p>
+                <div class="mini-grid">
+                    <div class="mini-card">
+                        <strong>Loopafstand</strong>
+                        Max. 10-15 minuten naar een halte (20-30 minuten buiten de bebouwde kom).
+                    </div>
+                    <div class="mini-card">
+                        <strong>Diensttijden</strong>
+                        Minimaal overdag, 's avonds en in het weekend met stabiele frequentie in de spits.
+                    </div>
+                    <div class="mini-card">
+                        <strong>Toegankelijkheid</strong>
+                        Veilige haltes, rolstoeltoegang en duidelijke informatie voor alle reizigers.
+                    </div>
+                </div>
+            </section>
+
+            <section class="section">
+                <span class="section-label">Transparante Tijdlijn</span>
+                <h2>Zo bouwen we stap voor stap</h2>
+                <p class="lead">Movix zit in de onderzoeksfase, maar werkt met een duidelijk plan en opvolgende stappen.</p>
+                <div class="timeline">
+                    <article class="timeline-item">
+                        <div class="timeline-phase">Nu</div>
+                        <div>
+                            <h3>Fase 1 - Data verzamelen</h3>
+                            <p>Inzichten ophalen via de 2-minuten check en ervaringen van reizigers uit de regio bundelen.</p>
+                        </div>
+                    </article>
+                    <article class="timeline-item">
+                        <div class="timeline-phase">Straks</div>
+                        <div>
+                            <h3>Fase 2 - Analyse en rapport</h3>
+                            <p>Knelpunten per focuspunt analyseren en vertalen naar een helder, bruikbaar adviesrapport.</p>
+                        </div>
+                    </article>
+                    <article class="timeline-item">
+                        <div class="timeline-phase">Later</div>
+                        <div>
+                            <h3>Fase 3 - Gesprekken met partijen</h3>
+                            <p>Resultaten bespreken met vervoerders, provincies en gemeenten om impact te maken in beleid.</p>
+                        </div>
+                    </article>
+                </div>
+            </section>
+
+            <section class="section">
+                <span class="section-label">Wat gebeurt er met je input?</span>
+                <h2>Onderzoek en Impact</h2>
+                <p class="lead">In deze fase verzamelt Movix ervaringen, brengt knelpunten in kaart en vertaalt inzichten naar concrete verbeterrichtingen voor provincies en gemeenten.</p>
+                <p class="lead" style="margin-bottom: 0;">We werken met samengevoegde inzichten en geen openbare "rauwe" persoonsgegevens.</p>
+            </section>
+
+            <section class="section">
+                <span class="section-label">Veelgestelde vragen</span>
+                <h2>FAQ</h2>
+                <div class="faq-list">
+                    <details class="faq-item">
+                        <summary>Is Movix een nieuwe busmaatschappij?</summary>
+                        <p class="faq-answer">Nee. Movix is een onafhankelijk onderzoeksinitiatief dat data verzamelt om het huidige OV te verbeteren.</p>
+                    </details>
+                    <details class="faq-item">
+                        <summary>Wat gebeurt er met mijn privacy?</summary>
+                        <p class="faq-answer">Jouw data wordt anoniem verwerkt en uitsluitend gebruikt voor analyses en rapporten richting beleidsmakers.</p>
+                    </details>
+                    <details class="faq-item">
+                        <summary>Waarom focussen jullie op Zuid-Nederland?</summary>
+                        <p class="faq-answer">Omdat de verschraling van het OV in veel delen van Zuid-Nederland momenteel extra zichtbaar en voelbaar is.</p>
+                    </details>
+                </div>
+            </section>
+
+            <section class="section cta-section">
+                <h2>Bouw mee aan Movix</h2>
+                <p>De data uit onze enquête wordt gebruikt om per focuspunt knelpunten in kaart te brengen. Jouw input is de basis voor ons toekomstige advies aan provincies en gemeenten.</p>
+            </section>
         </div>
-
-<div class="info-box">
-    <h2>Onderzoek naar Basis-OV als Recht</h2>
-    <p>
-        In de huidige fase richt Movix zich volledig op onderzoek. Wij geloven dat toegang tot goed openbaar vervoer een 
-        <strong>fundamenteel recht</strong> is. Ons onderzoek richt zich op het ondekken van regios waar er geen "Basis-OV", waarom en hoe dit verbeterd kan worden.
-    </p>
-    
-    <div class="features">
-        <div class="feature" style="border-left-color: #3F51B5;">
-            <div class="feature-icon">🔍</div>
-            <h3>Gaten in het Netwerk</h3>
-            <p>Het analyseren van plekken waar vervoer nu tekortschiet, zoals dorpen met lage frequenties of zonder avondvervoer.</p>
-        </div>
-
-        <div class="feature" style="border-left-color: #3F51B5;">
-            <div class="feature-icon">🚌</div>
-            <h3>Toekomstige Vormen</h3>
-            <p>Verkenning van kleinschalige projecten, nieuwe buurtbus concepten en het gebruik van schone technieken zoals elektriciteit en waterstof.</p>
-        </div>
-
-        <div class="feature" style="border-left-color: #3F51B5;">
-            <div class="feature-icon">🗺️</div>
-            <h3>Publieke Dienst</h3>
-            <p>Onderzoek naar open standaarden (GTFS) zodat reisinformatie altijd voor iedereen gratis en vindbaar blijft.</p>
-        </div>
-    </div>
-
-    <div class="disclaimer" style="margin-top: 32px; background: #f0f2ff; border-left-color: #3F51B5;">
-        <p>
-            <strong>Waar gaat de data naartoe?</strong> Na het verzamelen van informatie maken wij een alanyserapport over regio waar het huidig vervoer tekort komt of er simpelweg niet is.
-            Later presenteren wij onze bevindingen aan provincies, gemeenten en andere organizaties en kijken wij naar reële oplossingen. Er wordt geen "rauwe" data verstuurd. 
-        </p>
-    </div>
-</div>
-
-        <div class="info-box">
-            <h2>Hoe Groeit Movix?</h2>
-            <p>
-                <strong>Nu:</strong> Movix bevindt zich in de ontwikkel- en onderzoeksfase. 
-                De focus ligt op het verzamelen van ervaringen, het analyseren van knelpunten 
-                en het verkennen van mogelijke oplossingen voor beter openbaar vervoer.
-            </p>
-            <p>
-                <strong>Later:</strong> Op basis van deze inzichten kan worden onderzocht 
-                of samenwerking met gemeenten, provincies of andere partijen mogelijk is.
-            </p>
-            <p>
-                <strong>Toekomst:</strong> Eventuele vervolgstappen, zoals deelname aan 
-                aanbestedingen of concessies, zijn afhankelijk van wetgeving, 
-                besluitvorming door overheden en beschikbare samenwerkingen.
-            </p>
-
-            <div class="disclaimer">
-                <p>
-                    <strong>⚠️ Belangrijk:</strong> Movix is momenteel een concept en onderzoeksproject. 
-                    Er worden geen vervoersdiensten uitgevoerd en er bestaan geen rechten 
-                    op concessies of lijnen.
-                </p>
-            </div>
-        </div>
-
-        <div class="download-section" id="download">
-            <h2>📄 Download Onze Visie</h2>
-            <p>
-                Wil je meer weten over Movix, onze aanpak en onze plannen? 
-                Download het volledige "Wat is Movix?" document met alle informatie.
-            </p>
-            <a href="Wat%20is%20Movix%3F.pdf" class="btn btn-primary" download style="background: white; color: #3F51B5;">
-                📥 Download PDF (Wat is Movix?)
-            </a>
-            <p style="font-size: 15px; margin-top: 24px; opacity: 0.85;">
-                In deze pdf staat enigzins verouderde informatie. We zijn bezig met een up to date versie!
-            </p>
-        </div>
-    </div>
+    </main>
 
     <footer>
         <p class="footer-title">Movix</p>
-        <p><em>Movix is een onafhankelijk initiatief gestart door een jonge OV-enthousiasteling met interesse in openbaar vervoer, beleid en techniek</em></p>
-        <p style="margin-top: 24px; font-size: 14px;">
-            &copy; 2025-2026 Movix. Momenteel nog niet operationeel.<br>
-            Movix is een concept en onderzoeksproject.
-        </p>
+        <p><em>Onafhankelijk initiatief van een jonge OV-enthousiasteling met interesse in openbaar vervoer, beleid en techniek.</em></p>
+        <p style="margin-top: 16px;">&copy; 2025-2026 Movix. Momenteel concept en onderzoeksproject.</p>
     </footer>
 </body>
 </html>
